@@ -1,0 +1,193 @@
+<style type="text/css">
+
+body {
+  background-color: #111;
+}
+#earth {
+  width: 300px;
+  height: 300px;
+  background: url(https://web.archive.org/web/20150807125159if_/http://www.noirextreme.com/digital/Earth-Color4096.jpg);
+  border-radius: 50%;
+  background-size: 610px;
+  box-shadow: inset 8px 36px 80px 36px rgb(0, 0, 0), inset -6px 0 12px 4px rgba(255, 255, 255, 0.3);
+  animation-name: rotate;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-animation-name: rotate;
+     -webkit-animation-duration: 12s;
+     -webkit-animation-iteration-count: infinite;
+     -webkit-animation-timing-function: linear;
+}
+@keyframes rotate {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: 610px 0px;
+  }
+}
+@-webkit-keyframes rotate {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: 610px 0px;
+  }
+}
+
+
+img {
+  border-radius: 50%;
+}
+
+
+.FriendCard{
+    position:fixed ; 
+    left: 1%;
+    bottom: 1%;
+    background-color: cornflowerblue;
+    padding-left: 1%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+}
+
+.TopRow{
+  padding-bottom: 2rem;
+}
+
+.BottomRow{
+  padding-top: 2rem;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+</style>
+
+
+<div class="container" style="width: 100%; height: 100%; ">
+
+<!--Row 1-->
+    <div class="row TopRow" >
+        <div class="col-4" @fade>
+          <div class="card" style="width: 18rem; background-color: cornflowerblue;">
+            <div class="card-body" >
+              <h5 class="card-title">information</h5>
+              <p class="card-text">
+
+                This page shows the information about the for your destination at 
+                  {{CoordModel.Latitude}} &nbsp; Latitude  {{CoordModel.Longitude}} Longitude
+                <br />
+                On the top right is a block that shows you the activities that you need
+                to do at the destinations abd the cost associated with each activity.
+                <br />
+                bottom left is a block that shows which of your friends will be accompanying 
+                you to your destination.
+                <br />
+                bottom left is a block that lists the weather condtions at said location.
+                
+                <br/>
+                
+              </p>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-4" >
+          <div id= "earth" ></div> 
+        </div>
+
+        <div class="col-4 " @fade>
+          <div class="card" style="width: 18rem; background-color: cornflowerblue;">
+            <div class="card-header">
+              Activities that you need to do at your destination and the cost related
+            </div>
+ 
+            <div class="row no-gutters" *ngFor="let item of model.activityDet" style="padding-bottom: 1rem;">
+
+              <div class="col-md-8">
+                Actvity <hr/>
+              </div>
+
+              <div class="col-md-4">
+                Cost <hr/>
+              </div>
+              
+            </div>
+            <div class="row no-gutters" *ngFor="let item of model.activityDet">
+
+            <div class="col-md-8" >
+              {{item.activity}}
+            </div>
+            
+            <div class="col-md-4" >   
+              $ {{item.price}}
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+<!--Row 2-->
+    <div class="row BottomRow"> 
+      <div class=" col-4" @text1 style="background-color: cornflowerblue;">
+        <table style="border: 0rem;" >
+            <tr> Number of friends accompanying you on your trip &nbsp; {{model.friend.length}}  </tr>
+            <tr>
+                  <div class="col-5" style="width: 20rem;">
+                      <div class="card" style="width: 12rem; " *ngFor="let item of model.friend">
+                          <img src="{{item.ImageUrl}}" class="card-img-top " alt="...">
+                          <div class="card-body">
+                              <h5 class="card-title">{{item.Title}} {{item.FirstName}}  {{item.LastName}}</h5>
+                              <p class="card-text"></p> 
+                          </div>
+                      </div>
+                  </div> 
+              </tr>   
+          </table>
+        </div>
+      <div class="col-4">
+
+      </div>
+        <div class="col-4" @text2>
+
+          <div class="card text-center" style="background-color: cornflowerblue;">
+            <div class="card-header">
+              Weather condtitions
+            </div>
+            <div class="card-body">
+
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters" *ngFor="let item of model.weather">
+              <div class="col-md-4">
+                <img src="{{item.IconLink}}" class="card-img" alt="weather icon">
+                <p>Cloud cover : {{item.CloudCover}}%</p>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.Description}}</h5>
+                  <p class="card-text">Temperature: {{item.Temperature}} C</p>
+                  <p class="card-text">Real feel: {{item.TempFeeling}} C</p>
+                  <p class="card-text">Humidity: {{item.Humidity}}%</p>
+                  <p class="card-text">Air pressure {{item.AirPressure}} hPa</p>
+                  <p class="card-text">Wind Speed: {{item.WindSpeed}} Km/h</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+            </div>
+            <div class="card-footer text-muted">
+              Updated : {{CoordModel.Time}}
+            </div>
+          </div>
+
+
+      </div>
+    </div>
+</div>
+

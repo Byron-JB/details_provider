@@ -1,0 +1,46 @@
+<style type="text/css">
+
+</style>
+
+  <div class="col d-flex justify-content-center"  >
+
+    <div class="card " style="width: 30rem;">                             
+      <div class="card-header  text-center" style="background-color: blueviolet;">
+       <h4 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> Welome the appliacation that shows details of potential destinations</h4>
+      </div>
+
+      <div class="card-body col d-flex justify-content-center" style="background-color: rgb(74, 74, 165);">
+        <div class="card text-center " style="width: 18rem;"  @fade>
+            <div class="card-body" name="CoordinateForm" style="background-color: cornflowerblue;">
+              <h5 class="card-title">Location Coordinates</h5>
+                <form [formGroup]="CoordinateForm" (ngSubmit)="onSubmit()" >
+
+                    <div class="card-text" style="align-items: center; " >
+                      <br/>
+                       
+                      <div class="input-group mb-3 ">
+                        <input type="text" placeholder="Longitude" name="Longitude" formControlName="Longitude" >
+                        <span class="input-group-text" id="basic-addon2">Longitude</span>
+                      </div>
+                      <br/>
+                      <div class="input-group mb-3">
+                        <input type="text" placeholder="Latitude" name="Latitude" formControlName="Latitude" >
+                        <span class="input-group-text" id="basic-addon2">Latitude</span>
+                      </div>
+                      <br/>
+
+                    </div>
+                    <button class="btn btn-primary" type="submit">Get Details</button>
+                </form>
+                <button class="btn btn-primary" type="button" (click)="Go()">save</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+
